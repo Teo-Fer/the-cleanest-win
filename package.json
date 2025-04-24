@@ -15,10 +15,15 @@
     "@fontsource-variable/jost": "^5.2.5",
     "@fontsource/jost": "^5.2.5",
     "@fontsource/twinkle-star": "^5.2.5",
+    "@leenguyen/react-flip-clock-countdown": "^1.6.1",
     "@mui/icons-material": "^7.0.2",
     "@mui/material": "^7.0.2",
+    "@tsparticles/react": "^3.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-particles": "^2.12.2",
+    "react-type-animation": "^3.2.0",
+    "tsparticles": "^3.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",

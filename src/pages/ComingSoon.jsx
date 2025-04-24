@@ -1,153 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import './ComingSoon.css';
+import FlipClockCountdown from '@leenguyen/react-flip-clock-countdown';
+import { LightModeOutlined } from '@mui/icons-material';
+import { DarkModeOutlined } from '@mui/icons-material';
 
-import { Container, Typography, Button, Grid, Paper } from '@mui/material';
+import '@leenguyen/react-flip-clock-countdown/dist/index.css';
+import { TypeAnimation } from 'react-type-animation';
+import degiLogo from '../assets/logo.png'
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+const ComingSoon = ({ targetDate }) => {
 
-import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
-
-import LightMode from '@mui/icons-material/LightMode'
-import DarkMode from '@mui/icons-material/DarkMode'
-
-
-const ComingSoon = () => {
-    const [theme, setTheme] = useState(createTheme({
-        palette: {
-            mode: 'dark',
-            primary: {
-                main: '#1976d2',
-            },
-        },
-    }));
-
-    const [countdown, setCountdown] = useState({
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-    });
-
-
-    useEffect(() => {
-
-        const launchDate = new Date("2025-04-22T23:00:00").getTime();
-        const interval = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = launchDate - now;
-            setCountdown({
-                days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-                seconds: Math.floor((distance % (1000 * 60)) / 1000),
-            });
-
-
-            if (distance < 0) {
-                clearInterval(interval);
-                setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-            }
-
-        }, 1000);
-
-
-        return () => clearInterval(interval);
-
-    }, []);
-
+    const [isDarkTheme, setIsDarkTheme] = useState(false);
 
     const toggleTheme = () => {
-
-        setTheme(prevTheme => createTheme({
-
-            palette: {
-
-                mode: prevTheme.palette.mode === 'dark' ? 'light' : 'dark',
-
-                primary: {
-
-                    main: '#1976d2',
-
-                },
-
-            },
-
-        }));
-
+        setIsDarkTheme(!isDarkTheme);
     };
 
-
     return (
+        <div className={`coming-soon-container ${isDarkTheme ? 'dark' : 'light'}`}>
+            <img src={degiLogo} alt="Logo" className="logo" />
+            <TypeAnimation
+                sequence={[
+                    // Same substring at the start will only be typed out once, initially
+                    'Se viene cositas...',
+                    1000,
+                    'Se viene cositas...',
+                    1000
+                ]}
+                speed={50}
+                style={{ fontSize: '3em', display: 'inline-block', textAlign: "center" }}
+                repeat={Infinity}
+            />
+            <FlipClockCountdown
+                to={targetDate}
+                labels={['Días', 'Horas', 'Minutos', 'Segundos']}
+                labelStyle={{ fontSize: '1rem', fontWeight: 500, textTransform: 'uppercase' }}
+                digitBlockStyle={{ width: '2em', height: '3em', fontSize: '2rem' }} // Cambia a un porcentaje
+                dividerStyle={{ color: 'gray', height: 1 }}
+                separatorStyle={{ color: 'white', size: '0.5em' }}
+                duration={0.5}
+                className='flip-clock'
+                style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', padding: '1em' }} // Permitir que se envuelvan
+            >
+            </FlipClockCountdown>
 
-        <ThemeProvider theme={theme}>
-
-            <Container component={Paper} elevation={3} style={{ padding: '2em', textAlign: 'center' }}>
-
-                <Typography variant="h3">¡Próximamente!</Typography>
-
-                <Typography variant="h6">Estamos trabajando en algo increíble. ¡Mantente atento!</Typography>
-
-                <Grid container spacing={2} justifyContent="center" style={{ margin: '2em 0' }}>
-
-                    <Grid item>
-
-                        <AccessAlarmIcon fontSize="large" />
-
-                        <Typography variant="h4">{countdown.days} Días</Typography>
-
-                    </Grid>
-
-                    <Grid item>
-
-                        <AccessAlarmIcon fontSize="large" />
-
-                        <Typography variant="h4">{countdown.hours} Horas</Typography>
-
-                    </Grid>
-
-                    <Grid item>
-
-                        <AccessAlarmIcon fontSize="large" />
-
-                        <Typography variant="h4">{countdown.minutes} Minutos</Typography>
-
-                    </Grid>
-
-                    <Grid item>
-
-                        <AccessAlarmIcon fontSize="large" />
-
-                        <Typography variant="h4">{countdown.seconds} Segundos</Typography>
-
-                    </Grid>
-
-                </Grid>
-
-                <div>
-
-                    <FacebookIcon style={{ margin: '0 10px' }} />
-
-                    <TwitterIcon style={{ margin: '0 10px' }} />
-
-                    <InstagramIcon style={{ margin: '0 10px' }} />
-
-                </div>
-
-                <Button variant="contained" onClick={toggleTheme} style={{ marginTop: '2em' }}>
-                    {theme.palette.mode === 'dark' ? 
-                    <LightMode style={{ margin: '0 10px' }} /> 
-                    :<DarkMode style={{ margin: '0 10px' }} />}
-                </Button>
-
-            </Container>
-
-        </ThemeProvider>
-
+            <button onClick={toggleTheme} className="theme-toggle">
+                {isDarkTheme ? <LightModeOutlined /> : <DarkModeOutlined />}
+            </button>
+        </div>
     );
-
 };
-
 
 export default ComingSoon;

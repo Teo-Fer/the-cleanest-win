@@ -1,67 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Header from './components/Header'
-import Footer from './components/Footer'
-
 import ComingSoon from './pages/ComingSoon'
 
-
-
 import '@fontsource-variable/jost';
+import Background from './components/Background'
+
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const targetDate = new Date('2025-04-28T09:00:00'); // Cambia esta fecha a la que desees  
   return (
-
-    <div style={styles.app}>
-      {/* <Header /> */}
-      <ComingSoon />
-      {/* <Footer /> */}
-
-    </div>
-
-  );
-
-  // return (
-  //   <>
-  //     <div>
-  //       <a href="https://vite.dev" target="_blank">
-  //         <img src={viteLogo} className="logo" alt="Vite logo" />
-  //       </a>
-  //       <a href="https://react.dev" target="_blank">
-  //         <img src={reactLogo} className="logo react" alt="React logo" />
-  //       </a>
-  //     </div>
-  //     <h1>Vite + React</h1>
-  //     <div className="card">
-  //       <button onClick={() => setCount((count) => count + 1)}>
-  //         count is {count}
-  //       </button>
-  //       <p>
-  //         Edit <code>src/App.jsx</code> and save to test HMR
-  //       </p>
-  //     </div>
-  //     <p className="read-the-docs">
-  //       Click on the Vite and React logos to learn more
-  //     </p>
-  //   </>
-  // )
+     <div style={styles.app}>
+      {/* <Background/> */}
+      <ComingSoon targetDate={targetDate}/>  
+       {/* <Footer /> */}
+     </div>
+   );
 }
 
 const styles = {
-
   app: {
-
     display: 'flex',
-
     flexDirection: 'column',
-
     minHeight: '100vh',
-
   },
-
 };
 
 export default App
