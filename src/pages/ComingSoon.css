@@ -1,90 +1,99 @@
 .coming-soon-container {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, color 0.3s;
     max-width: 100%;
-    /* Limitar el ancho máximo */
-    justify-content: center;
-    /* Centrar el contenedor */
-    max-width: 100%;
-    /* Asegúrate de que no exceda el ancho de la pantalla */
+    padding: 30px;
+    gap: 20px;
 }
-
-
-.coming-soon-container.light {
-    background-color: #f0f0f0;
-    color: #000;
-}
-
-.coming-soon-container.dark {
-    background-color: #333;
-    color: #fff;
-}
-
-.theme-toggle {
-    margin: 20px;
-    padding: 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-
-.theme-toggle.active::before {
-
-    transform: translate(-50%, -50%) scale(1);
-    /* Expandir al hacer clic */
-
-}
-
-@media (max-width: 768px) {
-    .coming-soon-container {
-        padding: 15px;
-        /* Menos padding en pantallas más pequeñas */
-    }
-
-    .theme-toggle {
-        font-size: 14px;
-        /* Tamaño de fuente más pequeño */
-    }
-
-    .flip-clock {
-        flex-direction: column;
-        /* Cambiar a columna en pantallas pequeñas */
-    }
-}
-
-@media (max-width: 480px) {
-    .coming-soon-container {
-        padding: 10px;
-        /* Aún menos padding */
-    }
-
-    .theme-toggle {
-        padding: 8px 8px;
-        /* Ajustar el padding del botón */
-        font-size: 12px;
-        /* Tamaño de fuente más pequeño */
-    }
-
-    .flip-clock {
-        font-size: 36px;
-        /* Tamaño de fuente más pequeño para el reloj */
-    }
-
-}
+.flip-clock {
+    --fcc-flip-duration: 0.5s; /* transition duration when flip card */
+    --fcc-spacing: 8px; /* space between unit times and separators */
+    --fcc-digit-block-width: 2em; /* width of digit card */
+    --fcc-digit-block-height: 3em; /* height of digit card, highly recommend in even number */
+    --fcc-digit-block-radius: 5px; /* border radius of digit card */
+    --fcc-digit-block-spacing: 5px; /* space between blocks in each unit of time */
+    --fcc-digit-font-size: 30px; /* font size of digit */
+    --fcc-digit-color: #a8a8a8; /* color of digit */
+    --fcc-label-font-size: 1rem; /* font size of label */
+    --fcc-label-font-weigth: 500; /* color of label */
+    --fcc-divider-color: #a8a8a8; /* color of divider */
+    --fcc-divider-height: 1px; /* height of divider */
+    --fcc-separator-size: 6px; /* size of colon */
+    --fcc-separator-color: #a8a8a8; /* color of colon */
+  }
 
 .logo {
     display: flex;
-    width: 20em;
-    /* max-width: 100%; Asegúrate de que la imagen no exceda el ancho del contenedor */
-    height: auto; /* Mantener la proporción de la imagen */
-    margin-bottom: 20px; /* Espaciado debajo de la imagen */
+    width: 24em;
+    height: auto;
+    margin-bottom: 20px;
     justify-content: center;
     align-items: center;
+}
+
+
+/* Tablets y pantallas medianas */
+@media (max-width: 768px) {
+    .coming-soon-container {
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .flip-clock {
+        --fcc-flip-duration: 0.5s; /* transition duration when flip card */
+        --fcc-spacing: 8px; /* space between unit times and separators */
+        --fcc-digit-block-width: 1em; /* width of digit card */
+        --fcc-digit-block-height: 2em; /* height of digit card, highly recommend in even number */
+        --fcc-digit-block-radius: 5px; /* border radius of digit card */
+        --fcc-digit-block-spacing: 5px; /* space between blocks in each unit of time */
+        --fcc-digit-font-size: 20px; /* font size of digit */
+        --fcc-digit-color: a8a8a8; /* color of digit */
+        --fcc-label-font-size: 1rem; /* font size of label */
+        --fcc-label-font-weigth: 500; /* color of label */
+        --fcc-divider-color: a8a8a8; /* color of divider */
+        --fcc-divider-height: 1px; /* height of divider */
+        --fcc-separator-size: 6px; /* size of colon */
+        --fcc-separator-color: #a8a8a8; /* color of colon */
+      }    
+
+    .logo {
+        width: 16em;
+    }
+}
+
+/* Teléfonos móviles */
+@media (max-width: 480px) {
+    .coming-soon-container {
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .flip-clock {
+        --fcc-flip-duration: 0.5s; /* transition duration when flip card */
+        --fcc-spacing: 8px; /* space between unit times and separators */
+        --fcc-digit-block-width: 1em; /* width of digit card */
+        --fcc-digit-block-height: 2em; /* height of digit card, highly recommend in even number */
+        --fcc-digit-block-radius: 5px; /* border radius of digit card */
+        --fcc-digit-block-spacing: 5px; /* space between blocks in each unit of time */
+        --fcc-digit-font-size: 20px; /* font size of digit */
+        --fcc-digit-color: a8a8a8; /* color of digit */
+        --fcc-label-font-size: 1rem; /* font size of label */
+        --fcc-label-font-weigth: 500; /* color of label */
+        --fcc-divider-color: a8a8a8; /* color of divider */
+        --fcc-divider-height: 1px; /* height of divider */
+        --fcc-separator-size: 6px; /* size of colon */
+        --fcc-separator-color: #a8a8a8; /* color of colon */
+      }    
+
+
+    .logo {
+        width: 14em;
+    }
 }
